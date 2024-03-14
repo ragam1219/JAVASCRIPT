@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side-by-Side Clock</title>
+    <style>
+        #clock {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<center>
+<div id="clock">00:00</div>
+<button onclick="startClock()">Click Here</button>
+
+<script>
+    function startClock() {
+        var clockElement = document.getElementById('clock');
+        
+        // Function to update the clock
+        function updateClock() {
+            var now = new Date();
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+            var seconds = now.getSeconds().toString().padStart(2, '0');
+            var timeString = minutes + ':' + seconds;
+
+            clockElement.textContent = timeString;
+        }
+
+        // Update the clock every second
+        var intervalId = setInterval(updateClock, 1000);
+
+        // Stop the clock after 10 seconds (for demonstration purposes)
+        setTimeout(function() {
+            clearInterval(intervalId);
+            clockElement.textContent = 'Clock Stopped';
+        }, 10000);
+    }
+</script>
+</center>
+</body>
+</html>
